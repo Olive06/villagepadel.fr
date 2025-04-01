@@ -41,7 +41,7 @@ const App: React.FC = () => {
   const [showQR, setShowQR] = useState(false);
 
   return (
-    <Router>
+    <Router basename="/villagepadel.fr">
       <ScrollToTop />
       <div className="min-h-screen bg-white">
         <PromoBar />
