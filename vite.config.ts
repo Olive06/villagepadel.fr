@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: "/villagepadel.fr/",  // ✅ IMPORTANT pour que GitHub Pages trouve les fichiers
+  base: "/",  // For GitHub Pages with custom domain
   plugins: [react()],
   build: {
     outDir: "dist",

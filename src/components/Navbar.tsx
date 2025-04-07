@@ -9,15 +9,14 @@ interface NavbarProps {
   setShowQR: (show: boolean) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ 
-  isMenuOpen, 
-  setIsMenuOpen, 
-  showQR, 
+const Navbar: React.FC<NavbarProps> = ({
+  isMenuOpen,
+  setIsMenuOpen,
+  showQR,
   setShowQR
 }) => {
   const location = useLocation();
 
-  // 🔹 Scroll fluide pour les ancres (après un changement de route)
   useEffect(() => {
     if (location.hash) {
       const element = document.querySelector(location.hash);
@@ -29,16 +28,14 @@ const Navbar: React.FC<NavbarProps> = ({
     }
   }, [location]);
 
-  // 🔹 Ferme le menu mobile après un clic sur un lien
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
 
   const navItems = [
     { label: 'Accueil', to: '/', onClick: handleLinkClick },
-    { label: 'Notre Solution', to: '/#solutions', onClick: handleLinkClick },
-    { label: 'Tout sur le Padel', to: '/padel-info', onClick: handleLinkClick },
-    { label: 'Nos Padels', to: '/nos-padels', onClick: handleLinkClick }, // ✅ Correction ici
+    { label: 'VP-Tech', to: '/vp-tech', onClick: handleLinkClick }, // ✅ Updated path
+    { label: 'Réserver', to: '/nos-padels', onClick: handleLinkClick },
     { label: 'Contact', to: '/#contact', onClick: handleLinkClick },
   ];
 
@@ -46,11 +43,11 @@ const Navbar: React.FC<NavbarProps> = ({
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* 🔹 Logo */}
+          {/* Logo */}
           <div className="flex items-center space-x-2">
             <Link to="/" className="flex items-center" onClick={handleLinkClick}>
-              <img 
-                src="https://raw.githubusercontent.com/Fab3146/Village-Padel-Flavien/ba35cf00af8d0e1b03a91f11e3978f56aa7e02a0/-Village_Padel_LOGO_LOLA_Bon__1_sansfond.qpng.png" // ✅ Vérifie l'URL
+              <img
+                src="https://raw.githubusercontent.com/Fab3146/Village-Padel-Flavien/ba35cf00af8d0e1b03a91f11e3978f56aa7e02a0/-Village_Padel_LOGO_LOLA_Bon__1_sansfond.qpng.png"
                 alt="Village Padel Logo"
                 className="h-12 w-auto"
               />
@@ -60,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </Link>
           </div>
 
-          {/* 🔹 Menu Desktop */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
@@ -81,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
 
-          {/* 🔹 Bouton Hamburger (Mobile) */}
+          {/* Mobile Hamburger */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -93,7 +90,7 @@ const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* 🔹 Menu Mobile */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -111,7 +108,7 @@ const Navbar: React.FC<NavbarProps> = ({
         </div>
       )}
 
-      {/* 🔹 QR Code Popup */}
+      {/* QR Code Popup */}
       {showQR && (
         <div className="fixed right-4 top-20 bg-white p-4 rounded-lg shadow-lg z-50">
           <img
@@ -123,6 +120,7 @@ const Navbar: React.FC<NavbarProps> = ({
       )}
     </nav>
   );
-}
+};
 
 export default Navbar;
+

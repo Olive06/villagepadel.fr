@@ -11,8 +11,6 @@ const HomePage: React.FC = () => {
     <div className="min-h-screen">
       <Hero />
       <Solutions />
-      <PadelRules />
-      <AppFeatures />
       <Testimonials />
       <ContactSection />
     </div>

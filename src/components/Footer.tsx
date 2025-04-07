@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Store, Phone } from 'lucide-react';
 
 const Footer: React.FC = () => {
@@ -74,18 +73,22 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-xl font-extrabold mb-4">Informations légales</h3>
             <div className="space-y-2">
-              <Link 
-                to="/cgu" 
+              <a 
+                href="https://olive06.github.io/villagepadel.fr/cgu.html" 
                 className="text-gray-300 hover:text-white transition block font-medium"
+                target="_blank" 
+                rel="noopener noreferrer"
               >
                 CGU
-              </Link>
-              <Link 
-                to="/cgv" 
+              </a>
+              <a 
+                href="https://olive06.github.io/villagepadel.fr/cgv.html" 
                 className="text-gray-300 hover:text-white transition block font-medium"
+                target="_blank" 
+                rel="noopener noreferrer"
               >
                 CGV
-              </Link>
+              </a>
             </div>
           </div>
         </div>

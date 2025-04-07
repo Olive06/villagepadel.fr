@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import PadelInfo from './pages/PadelInfo';
 import GrisollesPadel from './pages/GrisollesPadel';
-import CampsasPadel from "./pages/CampsasPadel";
-import NosPadels from './pages/NosPadels';  // S'assure d'importer le bon composant
+import CampsasPadel from './pages/CampsasPadel';
+import NosPadels from './pages/NosPadels';
 import QuoteRequest from './pages/QuoteRequest';
-import ReservationConfirmation from './pages/ReservationConfirmation'
-import AppFeatures from "./pages/HomePage/AppFeatures";
+import ReservationConfirmation from './pages/ReservationConfirmation';
+import AppFeatures from './pages/HomePage/AppFeatures';
 import CGU from './pages/CGU';
 import CGV from './pages/CGV';
 import Footer from './components/Footer';
 import PromoBar from './components/PromoBar';
+import VPTechPage from './pages/VPTechPage';
+import RedirectPage from './pages/RedirectPage'; // Ajouté
 
 // Composant ScrollToTop
 const ScrollToTop = () => {
@@ -20,15 +23,13 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     if (hash) {
-      // Attendre que la page charge avant de scroller vers l'ancre
       setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+          element.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 100); // Petit délai pour garantir que l'élément est bien là
+      }, 100);
     } else {
-      // Si pas d'ancre, remonter en haut de la page
       window.scrollTo(0, 0);
     }
   }, [pathname, hash]);
@@ -41,17 +42,22 @@ const App: React.FC = () => {
   const [showQR, setShowQR] = useState(false);
 
   return (
-    <Router basename="/villagepadel.fr">
+    <>
+      <Helmet>
+        <title>Village Padel - Automatisation et Réservation de Terrains de Padel</title>
+        <meta
+          name="description"
+          content="Village Padel propose une solution complète pour les clubs : automatisation des terrains, application mobile de réservation, accès digital, et augmentation des revenus."
+        />
+      </Helmet>
       <ScrollToTop />
       <div className="min-h-screen bg-white">
-        <PromoBar />
-        <Navbar 
-          isMenuOpen={isMenuOpen} 
-          setIsMenuOpen={setIsMenuOpen} 
-          showQR={showQR} 
+        <Navbar
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          showQR={showQR}
           setShowQR={setShowQR}
         />
-        
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -63,14 +69,14 @@ const App: React.FC = () => {
             <Route path="/cgu" element={<CGU />} />
             <Route path="/cgv" element={<CGV />} />
             <Route path="/nos-padels" element={<NosPadels />} />
+            <Route path="/vp-tech" element={<VPTechPage />} />
             <Route path="/ConfirmationReservation" element={<ReservationConfirmation />} />
-
+            <Route path="/redirect" element={<RedirectPage />} /> {/* Nouvelle route */}
           </Routes>
         </main>
-
         <Footer />
       </div>
-    </Router>
+    </>
   );
 };
 

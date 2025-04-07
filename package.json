@@ -3,13 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Fab3146.github.io/villagepadel.fr",
+  "homepage": "https://villagepadel.fr",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp dist/index.html dist/404.html && node scripts/static-routes.cjs",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
@@ -17,14 +17,16 @@
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
     "react-leaflet": "^4.2.1",
     "react-leaflet-cluster": "^2.1.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.30.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "@types/react-helmet": "^6.1.11",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.9.1",
@@ -36,6 +38,7 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "vite-plugin-prerender": "^1.0.8"
   }
 }
